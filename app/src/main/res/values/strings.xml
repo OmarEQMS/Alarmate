@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Alarmate</string>
+    <string name="title_activity_list_alarms">ListAlarms</string>
 </resources>
