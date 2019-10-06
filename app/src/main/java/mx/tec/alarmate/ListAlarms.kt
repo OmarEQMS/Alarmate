@@ -1,6 +1,8 @@
 package mx.tec.alarmate
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 
@@ -14,4 +16,9 @@ class ListAlarms : AppCompatActivity() {
 
     }
 
+    fun cmdAddAlarm(v: View){
+        var intent = Intent(this, EditAlarm::class.java)
+        intent.putExtra("state", "add")
+        startActivity(intent)
+    }
 }

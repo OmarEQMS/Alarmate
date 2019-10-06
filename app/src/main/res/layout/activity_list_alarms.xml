@@ -46,11 +46,12 @@
         android:layout_height="60dp"
         android:layout_gravity="bottom|right|center_horizontal|end"
         android:layout_margin="26dp"
+        android:onClick="cmdAddAlarm"
         android:paddingLeft="10dp"
         app:backgroundTint="@color/colorAccent"
         app:cornerRadius="60dp"
         app:icon="@android:drawable/ic_menu_add"
         app:iconSize="40dp"
-        app:iconTint="@color/colorIcons" />
+        app:iconTint="@color/colorPrimaryText" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
