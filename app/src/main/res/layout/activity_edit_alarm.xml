@@ -1,305 +1,309 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     android:orientation="vertical"
     tools:context=".EditAlarm">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:orientation="vertical">
+            app:cardCornerRadius="20dp">
 
-            <androidx.cardview.widget.CardView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="20dp">
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/lblResumenAlarma"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Resumen Alarma"
-                            android:textColor="@color/colorSecondaryText"
-                            android:textSize="18dp" />
-
-                        <Switch
-                            android:id="@+id/swtOnOffAlarm"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:textSize="24dp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/lblAlarmTime"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="6:00 a.m."
-                            android:textColor="@color/colorPrimaryText"
-                            android:textSize="24dp" />
-
-                        <TextView
-                            android:id="@+id/txtAlarmDays"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="right"
-                            android:text="L M M J V S D"
-                            android:textColor="@color/colorPrimaryText"
-                            android:textSize="20dp" />
-                    </LinearLayout>
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                app:cardCornerRadius="20dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/lblNombreAlarma"
+                        android:id="@+id/lblResumenAlarma"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Nombre Alarma"
-                        android:textSize="18dp" />
-
-                    <EditText
-                        android:id="@+id/txtAlarmName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:inputType="textPersonName"
-                        android:textColor="@color/colorPrimaryText"
-                        android:textSize="24dp" />
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                app:cardCornerRadius="20dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/lblHoraAlarma"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="HoraAlarma"
-                        android:textSize="18dp" />
-
-                    <EditText
-                        android:id="@+id/txtAlarmTime"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:inputType="time" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                app:cardCornerRadius="20dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/lblDiaSemana"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Dias de la Semana"
+                        android:text="Resumen Alarma"
                         android:textColor="@color/colorSecondaryText"
                         android:textSize="18dp" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                    <Switch
+                        android:id="@+id/swtOnOffAlarm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="24dp" />
 
-                        <RadioButton
-                            android:id="@+id/radAlarmMonday"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:textSize="18dp" />
-
-                        <RadioButton
-                            android:id="@+id/radAlarmTuesday"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                        <RadioButton
-                            android:id="@+id/radAlarmWednesday"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                        <RadioButton
-                            android:id="@+id/radAlarmThursday"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                        <RadioButton
-                            android:id="@+id/radAlarmFriday"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                        <RadioButton
-                            android:id="@+id/radAlarmSaturday"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                        <RadioButton
-                            android:id="@+id/radAlarmSunday"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-                    </LinearLayout>
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                app:cardCornerRadius="20dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/lblSonido"
-                        android:layout_width="match_parent"
+                        android:id="@+id/lblAlarmTime"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Sonido"
+                        android:text="6:00 a.m."
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="24dp" />
+
+                    <TextView
+                        android:id="@+id/txtAlarmDays"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="L M M J V S D"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="20dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/lblNombreAlarma"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre Alarma"
+                    android:textSize="18dp" />
+
+                <EditText
+                    android:id="@+id/txtAlarmName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="24dp" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/lblHoraAlarma"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="HoraAlarma"
+                    android:textSize="18dp" />
+
+                <EditText
+                    android:id="@+id/txtAlarmTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="time" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/lblDiaSemana"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Dias de la Semana"
+                    android:textColor="@color/colorSecondaryText"
+                    android:textSize="18dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/radAlarmMonday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
                         android:textSize="18dp" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/txtAlarmSong"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="3"
-                            android:text="Not Selected..."
-                            android:textSize="20dp" />
-
-                        <Button
-                            android:id="@+id/btnAlarmSong"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="select" />
-                    </LinearLayout>
-
-                    <EditText
-                        android:id="@+id/txtAlarmSongDuration"
-                        android:layout_width="match_parent"
+                    <RadioButton
+                        android:id="@+id/radAlarmTuesday"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:hint="Duracion"
-                        android:inputType="number"
-                        android:textSize="20dp" />
+                        android:layout_weight="1" />
 
-                    <Switch
-                        android:id="@+id/swtAlarmVibration"
-                        android:layout_width="match_parent"
+                    <RadioButton
+                        android:id="@+id/radAlarmWednesday"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Vibracion"
-                        android:textSize="20dp" />
+                        android:layout_weight="1" />
 
-                    <Switch
-                        android:id="@+id/swtAlarmFlash"
-                        android:layout_width="match_parent"
+                    <RadioButton
+                        android:id="@+id/radAlarmThursday"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Flash"
-                        android:textSize="20dp" />
+                        android:layout_weight="1" />
+
+                    <RadioButton
+                        android:id="@+id/radAlarmFriday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <RadioButton
+                        android:id="@+id/radAlarmSaturday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <RadioButton
+                        android:id="@+id/radAlarmSunday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="20dp">
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                app:cardCornerRadius="20dp">
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/lblSonido"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sonido"
+                    android:textSize="18dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/lblRetos"
-                        android:layout_width="match_parent"
+                        android:id="@+id/txtAlarmSong"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Retos" />
+                        android:layout_weight="3"
+                        android:text="Not Selected..."
+                        android:textSize="20dp" />
 
-                    <ListView
-                        android:id="@+id/lvAlarmPuzzles"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        tools:listitem="@layout/alarm_layout" />
+                    <Button
+                        android:id="@+id/btnAlarmSong"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="select" />
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
 
-        </LinearLayout>
-    </ScrollView>
+                <EditText
+                    android:id="@+id/txtAlarmSongDuration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Duracion"
+                    android:inputType="number"
+                    android:textSize="20dp" />
 
-</LinearLayout>
+                <Switch
+                    android:id="@+id/swtAlarmVibration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Vibracion"
+                    android:textSize="20dp" />
+
+                <Switch
+                    android:id="@+id/swtAlarmFlash"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Flash"
+                    android:textSize="20dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/lblRetos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Retos" />
+
+                <ListView
+                    android:id="@+id/lvAlarmPuzzles"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:listitem="@layout/alarm_layout" >
+
+                </ListView>
+
+                <Button
+                    android:id="@+id/btnAddPuzzle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Agregar reto" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
