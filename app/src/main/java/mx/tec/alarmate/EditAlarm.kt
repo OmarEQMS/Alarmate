@@ -38,6 +38,10 @@ class EditAlarm : AppCompatActivity() {
                 swtAlarmVibration.isActivated = alarma.vibration
             }.start()
         }
+        btnAddPuzzle.setOnClickListener {
+            var intent = Intent(this, EditPuzzle::class.java)
+            startActivity(intent)
+        }
     }
 
     fun SaveAlarm(v: View){
