@@ -8,11 +8,14 @@ interface PuzzleDao {
     @Query("SELECT * FROM Puzzle")
     fun listPuzzles(): List<Puzzle>
 
+    @Query("SELECT * FROM Puzzle WHERE fkAlarm=:idAlarm")
+    fun listAlarmPuzzles(idAlarm: Int): List<Puzzle>
+
     @Query("SELECT * FROM Puzzle WHERE idPuzzle=:idPuzzle")
     fun getPuzzle(idPuzzle: Int): Puzzle
 
     @Insert
-    fun insertPuzzle(puzzle: Puzzle)
+    fun createPuzzle(puzzle: Puzzle)
 
     @Update
     fun updatePuzzle(puzzle: Puzzle)

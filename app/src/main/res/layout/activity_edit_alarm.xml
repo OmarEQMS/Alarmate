@@ -87,7 +87,7 @@
                     android:ems="10"
                     android:inputType="textPersonName"
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="24dp" />
+                    android:textSize="20dp" />
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
@@ -115,6 +115,8 @@
                     android:id="@+id/txtAlarmTime"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="20dp"
                     android:ems="10"
                     android:inputType="time" />
             </LinearLayout>
@@ -239,6 +241,7 @@
                     android:ems="10"
                     android:hint="Duracion"
                     android:inputType="number"
+                    android:textColor="@color/colorPrimaryText"
                     android:textSize="20dp" />
 
                 <Switch
@@ -265,7 +268,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:orientation="vertical">
 
@@ -278,8 +281,8 @@
                 <ListView
                     android:id="@+id/lvAlarmPuzzles"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    tools:listitem="@layout/alarm_layout" >
+                    android:layout_height="wrap_content"
+                    tools:listitem="@layout/custom_puzzle_item">
 
                 </ListView>
 

@@ -28,9 +28,9 @@ enum class PuzzleDifficulty constructor(val code: Int) {
 class PuzzleDifficultyConverter {
 
     @TypeConverter
-    fun getType(numeral: Int?): PuzzleDifficulty? {
+    fun getDifficulty(code: Int?): PuzzleDifficulty? {
         for (ds in PuzzleDifficulty.values()) {
-            if (ds.code === numeral) {
+            if (ds.code === code) {
                 return ds
             }
         }
@@ -38,8 +38,8 @@ class PuzzleDifficultyConverter {
     }
 
     @TypeConverter
-    fun getTypeInt(status: PuzzleDifficulty?): Int? {
-        return if (status != null) status!!.code else null
+    fun getDifficultyInt(difficulty: PuzzleDifficulty?): Int? {
+        return if (difficulty != null) difficulty!!.code else null
 
     }
 }

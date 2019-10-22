@@ -22,12 +22,12 @@ class Puzzle: Parcelable {
 
     @PrimaryKey(autoGenerate = true)
     @NonNull
-    val idPuzzle: Int
-    val type: PuzzleType
-    val difficulty: PuzzleDifficulty
-    val config: String
+    val idPuzzle: Long
+    var type: PuzzleType
+    var difficulty: PuzzleDifficulty
+    var config: String
     @ColumnInfo(name = "fkAlarm", index = true)
-    val fkAlarm: Int
+    var fkAlarm: Int
 
     @Ignore
     constructor() {
@@ -38,7 +38,7 @@ class Puzzle: Parcelable {
         this.fkAlarm = 0
     }
 
-    constructor(idPuzzle: Int, type: PuzzleType, difficulty: PuzzleDifficulty, config: String, fkAlarm: Int) {
+    constructor(idPuzzle: Long, type: PuzzleType, difficulty: PuzzleDifficulty, config: String, fkAlarm: Int) {
         this.idPuzzle = idPuzzle
         this.type = type
         this.difficulty = difficulty
@@ -48,18 +48,19 @@ class Puzzle: Parcelable {
 
     @Ignore
     constructor(source: Parcel):this(
-        source.readInt(),
-        PuzzleType.valueOf(source.readInt().toString()),
-        PuzzleDifficulty.valueOf(source.readInt().toString()),
+        source.readLong(),
+        PuzzleTypeConverter().getType(source.readInt())!!,
+        PuzzleDifficultyConverter().getDifficulty(source.readInt())!!,
         source.readString()!!,
         source.readInt()
     )
 
     override fun writeToParcel(dest: Parcel?, flags: Int) {
         dest?.let {
-            dest.writeInt(idPuzzle)
+            dest.writeLong(idPuzzle)
             dest.writeInt(type.code)
             dest.writeInt(difficulty.code)
+            dest.writeString(config)
             dest.writeInt(fkAlarm)
         }
     }
@@ -76,5 +77,9 @@ class Puzzle: Parcelable {
         override fun newArray(size: Int): Array<Puzzle?> {
             return arrayOfNulls(size)
         }
+    }
+
+    override fun toString(): String {
+        return "idPuzzle: ${idPuzzle}, type: ${type.name}, difficulty: ${difficulty.name}, config: ${config}, fkAlarm: ${fkAlarm}"
     }
 }
