@@ -15,7 +15,7 @@ import org.json.JSONObject
     entity = Alarm::class,
     parentColumns = ["idAlarm"],
     childColumns = ["fkAlarm"],
-    onDelete = ForeignKey.NO_ACTION)]
+    onDelete = ForeignKey.CASCADE)]
 )
 @TypeConverters(PuzzleDifficultyConverter::class, PuzzleTypeConverter::class)
 class Puzzle: Parcelable {
