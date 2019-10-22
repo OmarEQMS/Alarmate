@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Puzzle.MathPuzzle">
+    tools:context=".puzzle.Math.MathPuzzleFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,14 +18,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Ecuación"
+            android:text="Secuencia"
             android:textSize="24sp" />
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Resuelve la ecuación matemática" />
+            android:text="Selecciona los elementos en la secuencia correcta" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -37,29 +37,55 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp">
 
-                <TextView
-                    android:id="@+id/txtEasyEquation"
+                <LinearLayout
+                    android:id="@+id/lytEasySequence"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="8dp"
-                    android:text="16+15"
-                    android:textSize="24sp"
-                    app:layout_constraintEnd_toStartOf="@+id/btnEasy"
+                    android:orientation="horizontal"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/imgEasy1"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/like" />
+
+                    <ImageView
+                        android:id="@+id/imgEasy2"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/umbrella" />
+
+                    <ImageView
+                        android:id="@+id/imgEasy3"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/star" />
+
+                    <ImageView
+                        android:id="@+id/imgEasy4"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/drop" />
+                </LinearLayout>
 
                 <Switch
-                    android:id="@+id/btnEasy"
-                    android:layout_width="0dp"
+                    android:id="@+id/swtEasy"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
                     android:text="Fácil"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/txtEasyEquation"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
@@ -91,29 +117,68 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp">
 
-                <TextView
-                    android:id="@+id/txtMediumEquation"
+                <LinearLayout
+                    android:id="@+id/lytMediumSequence"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="8dp"
-                    android:text="(14+4)*5"
-                    android:textSize="24sp"
-                    app:layout_constraintEnd_toStartOf="@+id/btnMedium"
+                    android:orientation="horizontal"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/imgMedium1"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/like" />
+
+                    <ImageView
+                        android:id="@+id/imgMedium2"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/umbrella" />
+
+                    <ImageView
+                        android:id="@+id/imgMedium3"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/star" />
+
+                    <ImageView
+                        android:id="@+id/imgMedium4"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/star" />
+
+                    <ImageView
+                        android:id="@+id/imgMedium5"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/drop" />
+                    <ImageView
+                        android:id="@+id/imgMedium6"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/like" />
+                </LinearLayout>
 
                 <Switch
-                    android:id="@+id/btnMedium"
-                    android:layout_width="0dp"
+                    android:id="@+id/swtMedium"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
                     android:text="Medio"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/txtMediumEquation"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
@@ -145,29 +210,62 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp">
 
-                <TextView
-                    android:id="@+id/txtHardEquation"
+                <LinearLayout
+                    android:id="@+id/lytHardSequence"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="8dp"
-                    android:text="125-12*21"
-                    android:textSize="24sp"
-                    app:layout_constraintEnd_toStartOf="@+id/btnHard"
+                    android:orientation="horizontal"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/imgHard1"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/robot" />
+
+                    <ImageView
+                        android:id="@+id/imgHard2"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/mountain" />
+
+                    <ImageView
+                        android:id="@+id/imgHard3"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/star" />
+
+                    <ImageView
+                        android:id="@+id/imgHard4"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/eye" />
+
+                    <ImageView
+                        android:id="@+id/imgHard5"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/television" />
+                </LinearLayout>
 
                 <Switch
-                    android:id="@+id/btnHard"
-                    android:layout_width="0dp"
+                    android:id="@+id/swtHard"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
                     android:text="Difícil"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/txtHardEquation"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
@@ -203,6 +301,14 @@
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
                 android:text="Eliminar de alarma" />
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:text="Guardar cambios" />
         </LinearLayout>
 
 
