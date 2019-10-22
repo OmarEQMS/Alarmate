@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Puzzle.MathPuzzle">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,14 +17,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Ecuación"
+            android:text="Escanea"
             android:textSize="24sp" />
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Resuelve la ecuación matemática" />
+            android:text="Escanea el código QR" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -46,12 +45,12 @@
                     android:layout_marginTop="8dp"
                     android:text="16+15"
                     android:textSize="24sp"
-                    app:layout_constraintEnd_toStartOf="@+id/btnEasy"
+                    app:layout_constraintEnd_toStartOf="@+id/swtEasy"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Switch
-                    android:id="@+id/btnEasy"
+                    android:id="@+id/swtEasy"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -100,12 +99,12 @@
                     android:layout_marginTop="8dp"
                     android:text="(14+4)*5"
                     android:textSize="24sp"
-                    app:layout_constraintEnd_toStartOf="@+id/btnMedium"
+                    app:layout_constraintEnd_toStartOf="@+id/swtMedium"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Switch
-                    android:id="@+id/btnMedium"
+                    android:id="@+id/swtMedium"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -154,12 +153,12 @@
                     android:layout_marginTop="8dp"
                     android:text="125-12*21"
                     android:textSize="24sp"
-                    app:layout_constraintEnd_toStartOf="@+id/btnHard"
+                    app:layout_constraintEnd_toStartOf="@+id/swtHard"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Switch
-                    android:id="@+id/btnHard"
+                    android:id="@+id/swtHard"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -203,6 +202,14 @@
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
                 android:text="Eliminar de alarma" />
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:text="Guardar cambios" />
         </LinearLayout>
 
 

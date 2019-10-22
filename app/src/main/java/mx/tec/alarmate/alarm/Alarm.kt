@@ -1,5 +1,5 @@
 package mx.tec.alarmate.Alarm
 
-data class Arlarm(
+data class Alarm(
     var idAlarm: Int
 )

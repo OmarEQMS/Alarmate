@@ -4,9 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_edit_alarm.*
-import mx.tec.alarmate.Puzzle.MathPuzzle
-import mx.tec.alarmate.Puzzle.Puzzle
-import mx.tec.alarmate.Puzzle.PuzzleEditorListener
 
 class EditAlarm : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

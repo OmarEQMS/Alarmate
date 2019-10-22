@@ -1,32 +1,23 @@
 package mx.tec.alarmate.Puzzle
 
 import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 
-import mx.tec.alarmate.R
-
-class MathPuzzle : Fragment() {
+open class PuzzleFragment : Fragment() {
     private var listener: PuzzleEditorListener? = null
+    var puzzle: Puzzle?
+
+    // Initialize to default instance of Puzzle
+    init {
+        puzzle = Puzzle()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-//            param1 = it.getString(ARG_PARAM1)
-//            param2 = it.getString(ARG_PARAM2)
+            puzzle = it.getParcelable<Puzzle>(ARG_PUZZLE)
         }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_math_puzzle, container, false)
     }
 
     override fun onAttach(context: Context) {
@@ -45,11 +36,10 @@ class MathPuzzle : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MathPuzzle().apply {
+        fun newInstance(puzzle: Puzzle) =
+            PuzzleFragment().apply {
                 arguments = Bundle().apply {
-//                    putString(ARG_PARAM1, param1)
-//                    putString(ARG_PARAM2, param2)
+                    putParcelable(ARG_PUZZLE, puzzle)
                 }
             }
     }
