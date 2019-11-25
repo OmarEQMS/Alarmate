@@ -22,6 +22,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="10dp"
                 android:orientation="horizontal">
 
                 <Button
@@ -33,24 +34,24 @@
                     android:layout_weight="1"
                     android:drawableLeft="@android:drawable/ic_menu_delete"
                     android:onClick="DeleteAlarm"
-                    android:text="Delete" />
+                    android:text="Borrar"
+                    android:textSize="12sp" />
 
                 <Switch
                     android:id="@+id/swtOnOffAlarm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_weight="5"
+                    android:layout_weight="1"
                     android:checked="false"
                     android:gravity="left"
-                    android:paddingRight="20sp"
                     android:showText="false"
                     android:text="Status"
                     android:textAlignment="viewStart"
                     android:textColor="@color/colorPrimaryText"
                     android:textOff="OFF"
                     android:textOn="ON"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
 
                 <Button
                     android:id="@+id/btnSaveAlarm"
@@ -62,7 +63,8 @@
                     android:onClick="SaveAlarm"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:text="Save" />
+                    android:text="Salvar"
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
@@ -248,7 +250,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="select" />
+                        android:text="Seleccionar" />
                 </LinearLayout>
 
                 <EditText
@@ -256,7 +258,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:hint="Duracion"
+                    android:hint="Duración"
                     android:inputType="number"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="20dp" />
@@ -265,7 +267,7 @@
                     android:id="@+id/swtAlarmVibration"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Vibracion"
+                    android:text="Vibración"
                     android:textSize="20dp" />
 
                 <Switch

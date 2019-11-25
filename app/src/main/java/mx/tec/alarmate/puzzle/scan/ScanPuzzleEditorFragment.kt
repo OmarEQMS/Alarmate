@@ -1,13 +1,13 @@
-package mx.tec.alarmate.puzzle.sequence
+package mx.tec.alarmate.puzzle.scan
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import mx.tec.alarmate.puzzle.PuzzleFragment
+import mx.tec.alarmate.puzzle.PuzzleEditorFragment
 import mx.tec.alarmate.R
 
-class SequencePuzzleFragment : PuzzleFragment() {
+class ScanPuzzleEditorFragment : PuzzleEditorFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import mx.tec.alarmate.puzzle.PuzzleFragment
+import mx.tec.alarmate.puzzle.PuzzleEditorFragment
 import mx.tec.alarmate.R
 
-class RewritePuzzleFragment : PuzzleFragment() {
+class RewritePuzzleEditorFragment : PuzzleEditorFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import mx.tec.alarmate.db.model.Puzzle
 
-open class PuzzleFragment : Fragment() {
+open class PuzzleEditorFragment : Fragment() {
     private var listener: PuzzleEditorListener? = null
     var puzzle: Puzzle?
 

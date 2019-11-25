@@ -9,7 +9,6 @@ import android.widget.Button
 import android.widget.Switch
 import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.activity_edit_alarm.*
 import kotlinx.android.synthetic.main.fragment_edit_math_puzzle.swtEasy as swtMathEasy
 import kotlinx.android.synthetic.main.fragment_edit_math_puzzle.swtMedium as swtMathMedium
 import kotlinx.android.synthetic.main.fragment_edit_math_puzzle.swtHard as swtMathHard
@@ -186,7 +185,7 @@ open class PuzzleEditFragment(puzzle: Puzzle?, val idAlarm: Int, val type: Puzzl
     companion object {
         @JvmStatic
         fun newInstance(puzzle: Puzzle) =
-            PuzzleFragment().apply {
+            PuzzleEditorFragment().apply {
                 arguments = Bundle().apply {
                     putParcelable(ARG_PUZZLE, puzzle)
                 }
