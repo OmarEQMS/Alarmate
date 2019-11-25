@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
+import android.widget.TimePicker
 import android.widget.Toast
 import androidx.core.view.isGone
 import kotlinx.android.synthetic.main.activity_edit_alarm.*
@@ -21,19 +22,18 @@ import mx.tec.alarmate.db.util.AppDatabase
 import mx.tec.alarmate.puzzle.ARG_PUZZLE
 import mx.tec.alarmate.puzzle.ARG_PUZZLE_ALARM_ID
 import mx.tec.alarmate.puzzle.PuzzleAdapter
+import mx.tec.alarmate.util.AlarmTimePicker
 import java.util.*
 
-class EditAlarm : AppCompatActivity() {
+class EditAlarm : AppCompatActivity(), AlarmTimePicker.Listener {
     var idAlarm: Long = 0
+    var hourOfDay: Int = 0
+    var minute: Int = 0
     lateinit var puzzles: Array<Puzzle>
-    lateinit var alarmManager: AlarmManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_alarm)
-
-        // Get AlarmManager instance
-        alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
         idAlarm = intent.getLongExtra("idAlarm", 0)
         btnAddPuzzle.setOnClickListener {
@@ -41,6 +41,12 @@ class EditAlarm : AppCompatActivity() {
             intent.putExtra(ARG_PUZZLE_ALARM_ID, idAlarm.toInt())
             startActivity(intent)
         }
+        txtAlarmTime.setOnClickListener {
+            val timePicker = AlarmTimePicker()
+            timePicker.listener = this
+            timePicker.show(supportFragmentManager, "timePicker")
+        }
+
         if(idAlarm == 0L){
             btnAddPuzzle.isGone = true
         }
@@ -53,6 +59,7 @@ class EditAlarm : AppCompatActivity() {
                 startActivity(intent)
             }
         }
+        txtAlarmTime.setText(getAlarmTime())
     }
 
     override fun onResume() {
@@ -98,6 +105,12 @@ class EditAlarm : AppCompatActivity() {
         }
     }
 
+    override fun onTimeSet(hourOfDay: Int, minute: Int) {
+        this.hourOfDay = hourOfDay
+        this.minute = minute
+        txtAlarmTime.setText(getAlarmTime())
+    }
+
     fun SaveAlarm(v: View){
         val alarm = Alarm(idAlarm, txtAlarmName.text.toString(), swtOnOffAlarm.isChecked, txtAlarmTime.text.toString(), radAlarmMonday.isChecked, radAlarmTuesday.isChecked, radAlarmWednesday.isChecked, radAlarmThursday.isChecked, radAlarmFriday.isChecked, radAlarmSaturday.isChecked, radAlarmSunday.isChecked, swtAlarmVibration.isChecked, swtAlarmFlash.isChecked)
         val db = AppDatabase.getInstance(this)
@@ -107,47 +120,10 @@ class EditAlarm : AppCompatActivity() {
             else
                 db.alarmDao().updateAlarm(alarm)
 
-            if (alarm.active) {
-                RegisterAlarm(alarm)
-            }
+            alarm.registerNextAlarm(this)
             //Toast.makeText(this@EditAlarm, "Se guardo correctamente", Toast.LENGTH_LONG).show()
             finish()
         }.start()
-    }
-
-    fun RegisterAlarm(alarm: Alarm){
-//        val alarmIntent = Intent(this, AlarmReceiver::class.java).let { intent ->
-//            PendingIntent.getBroadcast(this, 0, intent, 0)
-//        }
-
-        // Set the alarm to start at approximately
-//        val calendar: Calendar = Calendar.getInstance().apply {
-//            timeInMillis = System.currentTimeMillis()
-//            set(Calendar.HOUR_OF_DAY, 12)
-//            set(Calendar.MINUTE, 0)
-//        }
-//        alarmManager?.setExact(
-//            AlarmManager.RTC_WAKEUP,
-//            calendar.timeInMillis,
-//            alarmIntent
-//        )
-
-        // Intent part
-        val i = Intent(applicationContext, AlarmReceiver::class.java)
-        i.action = "${AlarmReceiver.ACTION_TRIGGER_ALARM}${alarm.idAlarm}"
-//        i.putExtra(AlarmReceiver.ARG_ALARM, alarm)
-
-        val pendingIntentRequestCode = 0
-        val flags = PendingIntent.FLAG_UPDATE_CURRENT
-        val pendingIntent = PendingIntent.getBroadcast(applicationContext, pendingIntentRequestCode, i, flags)
-
-        // Alarm time
-        val ALARM_DELAY_IN_SECOND = 1
-        val alarmTimeAtUTC = System.currentTimeMillis() + ALARM_DELAY_IN_SECOND * 1_000L
-
-        // Set with system Alarm Service
-        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, alarmTimeAtUTC, pendingIntent)
-        Log.d(EditAlarm::class.java.simpleName, "Configured alarm ")
     }
 
     fun DeleteAlarm(v: View){
@@ -158,5 +134,15 @@ class EditAlarm : AppCompatActivity() {
             //Toast.makeText(this@EditAlarm, "Se elimino correctamente", Toast.LENGTH_LONG).show()
             finish()
         }.start()
+    }
+
+    fun getAlarmTime(): String {
+        var hourOfDayStr = appendLeadingZero(hourOfDay.toString())
+        var minutStr = appendLeadingZero(minute.toString())
+        return "${hourOfDayStr}:${minutStr}"
+    }
+
+    fun appendLeadingZero(str: String): String {
+        return if (str.length == 1) "0${str}" else str
     }
 }

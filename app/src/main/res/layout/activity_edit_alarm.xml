@@ -41,12 +41,13 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="5"
+                    android:checked="false"
                     android:gravity="left"
                     android:paddingRight="20sp"
                     android:showText="false"
                     android:text="Status"
                     android:textAlignment="viewStart"
-                    android:textColor="@color/colorSecondaryText"
+                    android:textColor="@color/colorPrimaryText"
                     android:textOff="OFF"
                     android:textOn="ON"
                     android:textSize="14sp" />
@@ -114,17 +115,20 @@
                     android:id="@+id/lblHoraAlarma"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="HoraAlarma"
+                    android:text="Hora Alarma"
                     android:textSize="18dp" />
 
                 <EditText
                     android:id="@+id/txtAlarmTime"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="20dp"
                     android:ems="10"
-                    android:inputType="time" />
+                    android:enabled="true"
+                    android:focusable="false"
+                    android:inputType="time"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="20dp" />
+
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -153,49 +157,56 @@
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
 
-                    <RadioButton
+                    <CheckBox
                         android:id="@+id/radAlarmMonday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:textSize="18dp" />
+                        android:text="L"
+                        android:textSize="14dp" />
 
-                    <RadioButton
+                    <CheckBox
                         android:id="@+id/radAlarmTuesday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        android:text="MA" />
 
-                    <RadioButton
+                    <CheckBox
                         android:id="@+id/radAlarmWednesday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        android:text="MI" />
 
-                    <RadioButton
+                    <CheckBox
                         android:id="@+id/radAlarmThursday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        android:text="J" />
 
-                    <RadioButton
+                    <CheckBox
                         android:id="@+id/radAlarmFriday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        android:text="V" />
 
-                    <RadioButton
+                    <CheckBox
                         android:id="@+id/radAlarmSaturday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        android:text="S" />
 
-                    <RadioButton
+                    <CheckBox
                         android:id="@+id/radAlarmSunday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        android:text="D" />
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
