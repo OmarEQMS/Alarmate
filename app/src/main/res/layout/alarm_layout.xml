@@ -29,11 +29,28 @@
             android:textSize="20dp" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/btnAlarmPuzzle"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Memoria, Ecuacion"
-        android:textSize="18dp" />
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txtAlarmName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/txtAlarmPuzzle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Memoria, Ecuacion"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="18dp" />
+    </LinearLayout>
 
 </LinearLayout>

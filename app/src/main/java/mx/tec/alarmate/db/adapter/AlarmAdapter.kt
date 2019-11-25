@@ -11,13 +11,13 @@ import mx.tec.alarmate.db.model.Alarm
 
 class AlarmAdapter(private val context: Context, private val layout: Int, private val dataSource: List<Alarm>): BaseAdapter() {
 
-    //Un servicio del main para inflar mi xml
     private val inflater: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
     private class ViewHolder {
         lateinit var txtAlarmHour: TextView
         lateinit var txtAlarmDays: TextView
-        lateinit var btnAlarmPuzzle: TextView
+        lateinit var txtAlarmPuzzle: TextView
+        lateinit var txtAlarmName: TextView
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
@@ -27,9 +27,10 @@ class AlarmAdapter(private val context: Context, private val layout: Int, privat
         if(convertView == null){
             view = inflater.inflate(layout, parent, false)
             holder = ViewHolder()
-            holder.txtAlarmHour = view.findViewById<TextView>(R.id.txtAlarmHour)
-            holder.txtAlarmDays = view.findViewById<TextView>(R.id.txtAlarmDays)
-            holder.btnAlarmPuzzle = view.findViewById<TextView>(R.id.btnAlarmPuzzle)
+            holder.txtAlarmHour = view.findViewById(R.id.txtAlarmHour)
+            holder.txtAlarmDays = view.findViewById(R.id.txtAlarmDays)
+            holder.txtAlarmPuzzle = view.findViewById(R.id.txtAlarmPuzzle)
+            holder.txtAlarmName = view.findViewById(R.id.txtAlarmName)
             view.tag = holder
         }else{
             view = convertView
@@ -45,9 +46,10 @@ class AlarmAdapter(private val context: Context, private val layout: Int, privat
         days += if (alarm.friday) "V " else "  "
         days += if (alarm.sunday) "S " else "  "
         days += if (alarm.saturday) "D" else "  "
-        holder.txtAlarmHour.text = alarm.hour.toString()
+        holder.txtAlarmHour.text = alarm.hour
         holder.txtAlarmDays.text = days
-        holder.btnAlarmPuzzle.text = ""
+        holder.txtAlarmPuzzle.text = "Tipos de retos"
+        holder.txtAlarmName.text = alarm.name
 
         return view
     }

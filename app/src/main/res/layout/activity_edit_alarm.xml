@@ -43,7 +43,13 @@
                     android:layout_weight="5"
                     android:gravity="left"
                     android:paddingRight="20sp"
-                    android:textSize="24sp" />
+                    android:showText="false"
+                    android:text="Status"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/colorSecondaryText"
+                    android:textOff="OFF"
+                    android:textOn="ON"
+                    android:textSize="14sp" />
 
                 <Button
                     android:id="@+id/btnSaveAlarm"

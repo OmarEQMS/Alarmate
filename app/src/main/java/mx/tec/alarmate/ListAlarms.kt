@@ -38,7 +38,7 @@ class ListAlarms : AppCompatActivity() {
             override fun onItemClick(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                 val alarm = parent.adapter.getItem(position) as Alarm
                 val intent = Intent(this@ListAlarms, EditAlarm::class.java)
-                intent.putExtra("idAlarm", alarm.idAlarm);
+                intent.putExtra("idAlarm", alarm.idAlarm)
                 startActivity(intent);
             }
         }
