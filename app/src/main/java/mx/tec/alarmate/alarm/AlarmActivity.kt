@@ -14,6 +14,7 @@ import mx.tec.alarmate.puzzle.PuzzleType
 import mx.tec.alarmate.puzzle.basic.BasicPuzzleFragment
 import mx.tec.alarmate.puzzle.math.MathPuzzleFragment
 import mx.tec.alarmate.puzzle.rewrite.RewritePuzzleFragment
+import mx.tec.alarmate.puzzle.sequence.SequencePuzzleFragment
 
 class AlarmActivity : AppCompatActivity(), PuzzleListener {
 
@@ -57,8 +58,11 @@ class AlarmActivity : AppCompatActivity(), PuzzleListener {
     }
 
     fun triggerPuzzles(){
+        // Alarm is done register next alarm to be triggered
         if(puzzleIndex >= puzzles.size){
             finish()
+            // TODO(abrahamtorres): Register next alarm
+//            alarm.registerNextAlarm(this)
             return
         }
         this.runOnUiThread{
@@ -80,7 +84,7 @@ class AlarmActivity : AppCompatActivity(), PuzzleListener {
 //                return BasicPuzzleFragment(alarm, puzzle)
             }
             PuzzleType.SEQUENCE -> {
-//                return BasicPuzzleFragment(alarm, puzzle)
+                return SequencePuzzleFragment(alarm, puzzle)
             }
             PuzzleType.REWRITE-> {
                 return RewritePuzzleFragment(alarm, puzzle)

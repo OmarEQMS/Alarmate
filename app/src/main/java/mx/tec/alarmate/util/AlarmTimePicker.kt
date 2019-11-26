@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.TimePicker
 import androidx.fragment.app.DialogFragment
 import java.util.*
+import mx.tec.alarmate.R
 
 class AlarmTimePicker : DialogFragment(), TimePickerDialog.OnTimeSetListener {
     interface Listener {
@@ -23,7 +24,7 @@ class AlarmTimePicker : DialogFragment(), TimePickerDialog.OnTimeSetListener {
         val minute = c.get(Calendar.MINUTE)
 
         // Create a new instance of TimePickerDialog and return it
-        return TimePickerDialog(activity, this, hour, minute, DateFormat.is24HourFormat(activity))
+        return TimePickerDialog(activity, R.style.AlarmTimePickerTheme, this, hour, minute, DateFormat.is24HourFormat(activity))
     }
 
     override fun onTimeSet(view: TimePicker, hourOfDay: Int, minute: Int) {

@@ -140,10 +140,8 @@ data class Alarm(
     }
 
     fun registerNextAlarm(ctx: Context){
-        if(!active){
-            Log.d(Alarm::class.java.simpleName, "Alarm with id: ${idAlarm}, name: ${name} not active, skipping it")
-            return
-        }
+        // Get AlarmManager instance
+        val alarmManager = ctx.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
         // Intent part
         val i = Intent(ctx, AlarmReceiver::class.java)
@@ -152,6 +150,13 @@ data class Alarm(
         val pendingIntentRequestCode = idAlarm.toInt()
         val flags = PendingIntent.FLAG_UPDATE_CURRENT
         val pendingIntent = PendingIntent.getBroadcast(ctx, pendingIntentRequestCode, i, flags)
+
+        // If inactive cancel pending intent
+        if(!active){
+            Log.d(Alarm::class.java.simpleName, "Alarm with id: ${idAlarm}, name: ${name} not active, unregistring it")
+            alarmManager.cancel(pendingIntent)
+            return
+        }
 
         // Alarm time
         var valid = false
@@ -174,9 +179,6 @@ data class Alarm(
         if(!valid){
             return
         }
-
-        // Get AlarmManager instance
-        val alarmManager = ctx.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
         // Set with system Alarm Service
         alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, pendingIntent)

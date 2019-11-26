@@ -49,28 +49,28 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <ImageView
-                        android:id="@+id/imgEasy1"
+                        android:id="@+id/img1"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/like" />
 
                     <ImageView
-                        android:id="@+id/imgEasy2"
+                        android:id="@+id/img2"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/umbrella" />
 
                     <ImageView
-                        android:id="@+id/imgEasy3"
+                        android:id="@+id/img3"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/star" />
 
                     <ImageView
-                        android:id="@+id/imgEasy4"
+                        android:id="@+id/img4"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_weight="1"
