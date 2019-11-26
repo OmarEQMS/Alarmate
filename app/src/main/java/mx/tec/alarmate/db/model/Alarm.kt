@@ -149,22 +149,26 @@ data class Alarm(
         val i = Intent(ctx, AlarmReceiver::class.java)
         i.action = "${AlarmReceiver.ACTION_TRIGGER_ALARM}${idAlarm}"
 
-        val pendingIntentRequestCode = 0
+        val pendingIntentRequestCode = idAlarm.toInt()
         val flags = PendingIntent.FLAG_UPDATE_CURRENT
         val pendingIntent = PendingIntent.getBroadcast(ctx, pendingIntentRequestCode, i, flags)
 
         // Alarm time
         var valid = false
         val calendar: Calendar = Calendar.getInstance().apply {
-            val nextDay = getNextDay()
-            if(nextDay>-1){
-                set(Calendar.HOUR_OF_DAY, getAlarmHour())
-                set(Calendar.MINUTE, getAlarmMinute())
-                set(Calendar.DAY_OF_WEEK, nextDay)
-                valid = true
-            }else{
-                Log.d(Alarm::class.java.simpleName, "Alarm with id: ${idAlarm}, name: ${name} invalid next day, skipping it")
-            }
+            // TODO(abrahamtorres): uncomment
+            timeInMillis = System.currentTimeMillis()
+            add(Calendar.SECOND, 1)
+            valid = true
+//            val nextDay = getNextDay()
+//            if(nextDay>-1){
+//                set(Calendar.HOUR_OF_DAY, getAlarmHour())
+//                set(Calendar.MINUTE, getAlarmMinute())
+//                set(Calendar.DAY_OF_WEEK, nextDay)
+//                valid = true
+//            }else{
+//                Log.d(Alarm::class.java.simpleName, "Alarm with id: ${idAlarm}, name: ${name} invalid next day, skipping it")
+//            }
         }
 
         if(!valid){
