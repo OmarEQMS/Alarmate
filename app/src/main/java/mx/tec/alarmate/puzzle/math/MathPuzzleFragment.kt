@@ -65,21 +65,21 @@ class MathPuzzleFragment(override var alarm: Alarm, override var puzzle: Puzzle)
     companion object{
         val EASY_POLICY = MathPuzzleFragment.DifficultyPolicy(
             PuzzleDifficulty.EASY,
-            arrayListOf(Operand.PLUS, Operand.MINUS),
+            arrayListOf(Operand.PLUS),
             Pair(2,2),
-            Pair(5,20)
+            Pair(5,15)
         )
         val MEDIUM_POLICY = MathPuzzleFragment.DifficultyPolicy(
             PuzzleDifficulty.MEDIUM,
-            arrayListOf(Operand.PLUS, Operand.MINUS, Operand.MULTIPLY),
+            arrayListOf(Operand.PLUS, Operand.MULTIPLY),
             Pair(2,3),
-            Pair(5,40)
+            Pair(5,20)
         )
         val HARD_POLICY = MathPuzzleFragment.DifficultyPolicy(
             PuzzleDifficulty.HARD,
-            arrayListOf(Operand.PLUS, Operand.MINUS, Operand.MULTIPLY, Operand.DIVIDE),
+            arrayListOf(Operand.PLUS, Operand.MULTIPLY, Operand.DIVIDE),
             Pair(3, 4),
-            Pair(-20, 20)
+            Pair(5, 40)
         )
     }
 }

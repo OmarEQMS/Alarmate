@@ -253,15 +253,10 @@
                         android:text="Seleccionar" />
                 </LinearLayout>
 
-                <EditText
-                    android:id="@+id/txtAlarmSongDuration"
+                <Spinner
+                    android:id="@+id/spnAlarmDuration"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="Duración"
-                    android:inputType="number"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="20dp" />
+                    android:layout_height="wrap_content" />
 
                 <Switch
                     android:id="@+id/swtAlarmVibration"

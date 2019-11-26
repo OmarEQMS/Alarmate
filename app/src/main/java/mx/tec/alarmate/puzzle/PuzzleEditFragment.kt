@@ -201,14 +201,22 @@ open class PuzzleEditFragment(puzzle: Puzzle?, val idAlarm: Int, val type: Puzzl
             listener?.onPuzzleDeleted(puzzle)
         }
         btnTryEasy.setOnClickListener {
-            // create copy of puzzle with different defficulty
-            startPuzzle()
+            val p = Puzzle()
+            p.type = this.type
+            p.difficulty = PuzzleDifficulty.EASY
+            startPuzzle(p)
         }
         btnTryMedium.setOnClickListener {
-            startPuzzle()
+            val p = Puzzle()
+            p.type = this.type
+            p.difficulty = PuzzleDifficulty.MEDIUM
+            startPuzzle(p)
         }
         btnTryHard.setOnClickListener {
-            startPuzzle()
+            val p = Puzzle()
+            p.type = this.type
+            p.difficulty = PuzzleDifficulty.HARD
+            startPuzzle(p)
         }
         if(isNew != null && isNew){
             btnDelete.isGone = true

@@ -17,6 +17,7 @@ import androidx.core.content.ContextCompat
 import android.content.DialogInterface
 import android.hardware.camera2.CameraAccessException
 import android.hardware.camera2.CameraManager
+import android.net.Uri
 
 open class PuzzleFragment(open val alarm: Alarm, open val puzzle: Puzzle?) : Fragment() {
     var listener: PuzzleListener? = null
@@ -71,12 +72,14 @@ open class PuzzleFragment(open val alarm: Alarm, open val puzzle: Puzzle?) : Fra
     }
 
     open fun sound(){
-        var alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
-
+        var alert = Uri.parse(alarm.uri)
         if (alert == null) {
-            alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+            alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
             if (alert == null) {
-                alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE)
+                alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+                if (alert == null) {
+                    alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE)
+                }
             }
         }
         mediaPlayer = MediaPlayer()
@@ -97,16 +100,16 @@ open class PuzzleFragment(open val alarm: Alarm, open val puzzle: Puzzle?) : Fra
         vibrationHandler.postDelayed(object : Runnable {
             override fun run() {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    vibrator.vibrate(VibrationEffect.createOneShot(VIBRATION_TIME, VibrationEffect.EFFECT_HEAVY_CLICK))
+                    vibrator.vibrate(VibrationEffect.createOneShot(alarm.interval, VibrationEffect.EFFECT_HEAVY_CLICK))
                 } else {
                     //deprecated in API 26
-                    vibrator.vibrate(VIBRATION_TIME)
+                    vibrator.vibrate(alarm.interval)
                 }
                 if (vibrating) {
-                    vibrationHandler.postDelayed(this, VIBRATION_PAUSE_TIME)
+                    vibrationHandler.postDelayed(this, alarm.interval)
                 }
             }
-        }, VIBRATION_PAUSE_TIME)
+        }, alarm.interval)
     }
 
     open fun flash(){
@@ -158,13 +161,13 @@ open class PuzzleFragment(open val alarm: Alarm, open val puzzle: Puzzle?) : Fra
         flashingHandler.postDelayed(object : Runnable {
             override fun run() {
                 if (flashing) {
-                    flashingHandler.postDelayed(this, FLASHING_INTERVAL_TIME)
+                    flashingHandler.postDelayed(this, alarm.interval)
                 } else {
                     return
                 }
                 toggleFlash()
             }
-        }, FLASHING_INTERVAL_TIME)
+        }, alarm.interval)
     }
 
     private fun toggleFlash(){

@@ -49,9 +49,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="number"
-                    android:textColor="@color/colorPrimaryText"
-                    android:imeOptions="actionDone"/>
+                    android:imeOptions="actionDone"
+                    android:inputType="numberSigned"
+                    android:textColor="@color/colorPrimaryText" />
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>

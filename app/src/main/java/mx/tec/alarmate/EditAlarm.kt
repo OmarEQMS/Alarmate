@@ -1,15 +1,19 @@
 package mx.tec.alarmate
 
+import android.app.Activity
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.media.RingtoneManager
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.TimePicker
 import android.widget.Toast
 import androidx.core.view.isGone
@@ -20,17 +24,20 @@ import mx.tec.alarmate.alarm.AlarmReceiver
 import mx.tec.alarmate.db.model.Alarm
 import mx.tec.alarmate.db.model.Puzzle
 import mx.tec.alarmate.db.util.AppDatabase
-import mx.tec.alarmate.puzzle.ARG_PUZZLE
-import mx.tec.alarmate.puzzle.ARG_PUZZLE_ALARM_ID
-import mx.tec.alarmate.puzzle.PuzzleAdapter
+import mx.tec.alarmate.puzzle.*
 import mx.tec.alarmate.util.AlarmTimePicker
-import java.util.*
 
-class EditAlarm : AppCompatActivity(), AlarmTimePicker.Listener {
+class EditAlarm : AppCompatActivity(), AlarmTimePicker.Listener, AdapterView.OnItemSelectedListener  {
+
+    data class Interval(val interval: Long, val name: String)
     var idAlarm: Long = 0
     var hourOfDay: Int = 0
     var minute: Int = 0
     lateinit var puzzles: Array<Puzzle>
+    val TUNE_REQUEST = 1
+    var uri: Uri? = Uri.EMPTY
+    var intervals = arrayListOf(Interval(INTERVAL_TIME_SLOW, "Lento"), Interval(INTERVAL_TIME_NORMAL, "Normal"), Interval(INTERVAL_TIME_FAST, "Rápido"))
+    var selectedInterval = intervals[0]
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +48,12 @@ class EditAlarm : AppCompatActivity(), AlarmTimePicker.Listener {
             val intent = Intent(this, EditPuzzle::class.java)
             intent.putExtra(ARG_PUZZLE_ALARM_ID, idAlarm.toInt())
             startActivity(intent)
+        }
+        btnAlarmSong.setOnClickListener {
+            val intent_upload = Intent()
+            intent_upload.type = "audio/*"
+            intent_upload.action = Intent.ACTION_GET_CONTENT
+            startActivityForResult(intent_upload, TUNE_REQUEST)
         }
         txtAlarmTime.setOnClickListener {
             val timePicker = AlarmTimePicker()
@@ -61,12 +74,11 @@ class EditAlarm : AppCompatActivity(), AlarmTimePicker.Listener {
             }
         }
         txtAlarmTime.setText(getAlarmTime())
-    }
+        spnAlarmDuration.adapter = ArrayAdapter<String>(this, R.layout.custom_spinner_item, getIntervalStrings())
+        spnAlarmDuration.onItemSelectedListener = this
 
-    override fun onResume() {
-        super.onResume()
+
         val db = AppDatabase.getInstance(this)
-
         if(idAlarm.toInt() == 0) btnDeleteAlarm.visibility = View.INVISIBLE
         else {
             Thread {
@@ -112,8 +124,38 @@ class EditAlarm : AppCompatActivity(), AlarmTimePicker.Listener {
         txtAlarmTime.setText(getAlarmTime())
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == TUNE_REQUEST) {
+            if (resultCode == Activity.RESULT_OK) {
+                onTuneSelected(data!!.data)
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    override fun onNothingSelected(p0: AdapterView<*>?) {
+
+    }
+
+    override fun onItemSelected(p0: AdapterView<*>?, v: View?, index: Int, id: Long) {
+        selectedInterval = intervals[index]
+    }
+
+    fun getIntervalStrings(): ArrayList<String>{
+        val strs = arrayListOf<String>()
+        for(i in 0 until intervals.size){
+            strs.add(intervals[i].name)
+        }
+        return strs
+    }
+
+    fun onTuneSelected(uri: Uri?){
+        Log.d("EditAlarm", "Selected uri")
+        this.uri = uri
+    }
+
     fun SaveAlarm(v: View){
-        val alarm = Alarm(idAlarm, txtAlarmName.text.toString(), swtOnOffAlarm.isChecked, txtAlarmTime.text.toString(), radAlarmMonday.isChecked, radAlarmTuesday.isChecked, radAlarmWednesday.isChecked, radAlarmThursday.isChecked, radAlarmFriday.isChecked, radAlarmSaturday.isChecked, radAlarmSunday.isChecked, swtAlarmVibration.isChecked, swtAlarmFlash.isChecked)
+        val alarm = Alarm(idAlarm, txtAlarmName.text.toString(), swtOnOffAlarm.isChecked, txtAlarmTime.text.toString(), radAlarmMonday.isChecked, radAlarmTuesday.isChecked, radAlarmWednesday.isChecked, radAlarmThursday.isChecked, radAlarmFriday.isChecked, radAlarmSaturday.isChecked, radAlarmSunday.isChecked, swtAlarmVibration.isChecked, swtAlarmFlash.isChecked, uri.toString(), selectedInterval.interval)
         val db = AppDatabase.getInstance(this)
         Thread{
             if(idAlarm.toInt()==0)
@@ -128,7 +170,7 @@ class EditAlarm : AppCompatActivity(), AlarmTimePicker.Listener {
     }
 
     fun DeleteAlarm(v: View){
-        val alarm = Alarm(idAlarm, txtAlarmName.text.toString(), swtOnOffAlarm.isChecked, txtAlarmTime.text.toString(), radAlarmMonday.isChecked, radAlarmTuesday.isChecked, radAlarmWednesday.isChecked, radAlarmThursday.isChecked, radAlarmFriday.isChecked, radAlarmSaturday.isChecked, radAlarmSunday.isChecked, swtAlarmVibration.isChecked, swtAlarmFlash.isChecked)
+        val alarm = Alarm(idAlarm, txtAlarmName.text.toString(), swtOnOffAlarm.isChecked, txtAlarmTime.text.toString(), radAlarmMonday.isChecked, radAlarmTuesday.isChecked, radAlarmWednesday.isChecked, radAlarmThursday.isChecked, radAlarmFriday.isChecked, radAlarmSaturday.isChecked, radAlarmSunday.isChecked, swtAlarmVibration.isChecked, swtAlarmFlash.isChecked, uri.toString(), selectedInterval.interval)
         val db = AppDatabase.getInstance(this)
         Thread {
             db.alarmDao().deleteAlarm(alarm)

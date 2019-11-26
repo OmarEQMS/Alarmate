@@ -33,7 +33,9 @@ data class Alarm(
     var saturday: Boolean,
     var sunday: Boolean,
     var vibration: Boolean,
-    var flash: Boolean
+    var flash: Boolean,
+    var uri: String,
+    var interval: Long
 ): Parcelable{
     constructor(source: Parcel):this(
         source.readLong(),
@@ -48,7 +50,9 @@ data class Alarm(
         source.readInt()>0,
         source.readInt()>0,
         source.readInt()>0,
-        source.readInt()>0
+        source.readInt()>0,
+        source.readString()!!,
+        source.readLong()
 
     )
 
@@ -66,6 +70,8 @@ data class Alarm(
         parcel.writeInt(if (sunday) 1 else 0)
         parcel.writeInt(if (vibration) 1 else 0)
         parcel.writeInt(if (flash) 1 else 0)
+        parcel.writeString(uri)
+        parcel.writeLong(interval)
     }
 
     override fun describeContents(): Int {
@@ -161,19 +167,21 @@ data class Alarm(
         // Alarm time
         var valid = false
         val calendar: Calendar = Calendar.getInstance().apply {
-            // TODO(abrahamtorres): uncomment
-            timeInMillis = System.currentTimeMillis()
-            add(Calendar.SECOND, 2)
-            valid = true
-//            val nextDay = getNextDay()
-//            if(nextDay>-1){
-//                set(Calendar.HOUR_OF_DAY, getAlarmHour())
-//                set(Calendar.MINUTE, getAlarmMinute())
-//                set(Calendar.DAY_OF_WEEK, nextDay)
-//                valid = true
-//            }else{
-//                Log.d(Alarm::class.java.simpleName, "Alarm with id: ${idAlarm}, name: ${name} invalid next day, skipping it")
-//            }
+            // TODO(abrahamtorres): Register alarm on correct time
+//            timeInMillis = System.currentTimeMillis()
+//            add(Calendar.SECOND, 2)
+//            valid = true
+
+
+            val nextDay = getNextDay()
+            if(nextDay>-1){
+                set(Calendar.HOUR_OF_DAY, getAlarmHour())
+                set(Calendar.MINUTE, getAlarmMinute())
+                set(Calendar.DAY_OF_WEEK, nextDay)
+                valid = true
+            }else{
+                Log.d(Alarm::class.java.simpleName, "Alarm with id: ${idAlarm}, name: ${name} invalid next day, skipping it")
+            }
         }
 
         if(!valid){

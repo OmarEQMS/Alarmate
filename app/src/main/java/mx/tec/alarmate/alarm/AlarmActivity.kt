@@ -8,10 +8,7 @@ import mx.tec.alarmate.R
 import mx.tec.alarmate.db.model.Alarm
 import mx.tec.alarmate.db.model.Puzzle
 import mx.tec.alarmate.db.util.AppDatabase
-import mx.tec.alarmate.puzzle.ARG_PUZZLE
-import mx.tec.alarmate.puzzle.PuzzleFragment
-import mx.tec.alarmate.puzzle.PuzzleListener
-import mx.tec.alarmate.puzzle.PuzzleType
+import mx.tec.alarmate.puzzle.*
 import mx.tec.alarmate.puzzle.basic.BasicPuzzleFragment
 import mx.tec.alarmate.puzzle.math.MathPuzzleFragment
 import mx.tec.alarmate.puzzle.rewrite.RewritePuzzleFragment
@@ -44,7 +41,7 @@ class AlarmActivity : AppCompatActivity(), PuzzleListener {
 
         }else if(puzzle != null){
             puzzles = listOf(puzzle)
-            this.alarm = Alarm(0, "Prueba", false, "Hora", false, false, false, false, false, false, false, false, false)
+            this.alarm = Alarm(0, "Prueba", false, "Hora", false, false, false, false, false, false, false, false, false, "", INTERVAL_TIME_NORMAL)
             triggerPuzzles()
         }else{
             Log.e(AlarmActivity::class.java.simpleName, "Alarm is not stored in database")
@@ -68,7 +65,7 @@ class AlarmActivity : AppCompatActivity(), PuzzleListener {
         if(puzzleIndex >= puzzles.size){
             finish()
             // TODO(abrahamtorres): Register next alarm
-//            alarm.registerNextAlarm(this)
+            alarm.registerNextAlarm(this)
             return
         }
         this.runOnUiThread{
