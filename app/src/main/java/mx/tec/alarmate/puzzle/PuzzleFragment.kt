@@ -9,6 +9,9 @@ import mx.tec.alarmate.db.model.Puzzle
 import android.view.View
 import android.media.RingtoneManager
 import android.media.MediaPlayer
+import android.media.AudioAttributes
+
+
 
 open class PuzzleFragment(open val alarm: Alarm, open val puzzle: Puzzle?) : Fragment() {
     var listener: PuzzleListener? = null
@@ -38,8 +41,21 @@ open class PuzzleFragment(open val alarm: Alarm, open val puzzle: Puzzle?) : Fra
     }
 
     open fun startAlarm(){
-        val notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
-        mediaPlayer = MediaPlayer.create(context, notification)
+        var alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
+
+        if (alert == null) {
+            alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+            if (alert == null) {
+                alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE)
+            }
+        }
+        mediaPlayer = MediaPlayer()
+        mediaPlayer.setAudioAttributes(
+            AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_ALARM)
+                .build())
+        mediaPlayer.setDataSource(context!!, alert)
+        mediaPlayer.prepare()
         mediaPlayer.start()
 
         if(alarm.vibration){
