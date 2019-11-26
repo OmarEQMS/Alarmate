@@ -1,4 +1,4 @@
-package mx.tec.alarmate.puzzle.Math
+package mx.tec.alarmate.puzzle.math
 
 import android.os.Bundle
 import android.view.LayoutInflater

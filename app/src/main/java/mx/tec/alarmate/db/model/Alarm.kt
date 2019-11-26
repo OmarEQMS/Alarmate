@@ -158,7 +158,7 @@ data class Alarm(
         val calendar: Calendar = Calendar.getInstance().apply {
             // TODO(abrahamtorres): uncomment
             timeInMillis = System.currentTimeMillis()
-            add(Calendar.SECOND, 1)
+            add(Calendar.SECOND, 2)
             valid = true
 //            val nextDay = getNextDay()
 //            if(nextDay>-1){

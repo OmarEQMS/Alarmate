@@ -4,7 +4,6 @@ import android.Manifest
 import android.app.AlertDialog
 import android.content.Context
 import android.content.pm.PackageManager
-import android.media.Ringtone
 import android.os.*
 import androidx.fragment.app.Fragment
 import mx.tec.alarmate.db.model.Alarm
@@ -17,7 +16,6 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import android.content.DialogInterface
 import android.hardware.camera2.CameraAccessException
-import androidx.core.content.ContextCompat.getSystemService
 import android.hardware.camera2.CameraManager
 
 open class PuzzleFragment(open val alarm: Alarm, open val puzzle: Puzzle?) : Fragment() {
@@ -64,8 +62,12 @@ open class PuzzleFragment(open val alarm: Alarm, open val puzzle: Puzzle?) : Fra
 
     open fun stopAlarm(){
         mediaPlayer.stop()
+
         vibrating = false
+
         flashing = false
+        flashOn = true
+        toggleFlash()
     }
 
     open fun sound(){
@@ -155,12 +157,14 @@ open class PuzzleFragment(open val alarm: Alarm, open val puzzle: Puzzle?) : Fra
         flashing = true
         flashingHandler.postDelayed(object : Runnable {
             override fun run() {
-                toggleFlash()
                 if (flashing) {
-                    flashingHandler.postDelayed(this, FLASHING_PAUSE_TIME)
+                    flashingHandler.postDelayed(this, FLASHING_INTERVAL_TIME)
+                } else {
+                    return
                 }
+                toggleFlash()
             }
-        }, FLASHING_PAUSE_TIME)
+        }, FLASHING_INTERVAL_TIME)
     }
 
     private fun toggleFlash(){
