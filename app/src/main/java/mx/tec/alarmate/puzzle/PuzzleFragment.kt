@@ -18,6 +18,7 @@ import android.content.DialogInterface
 import android.hardware.camera2.CameraAccessException
 import android.hardware.camera2.CameraManager
 import android.net.Uri
+import android.util.Log
 
 open class PuzzleFragment(open val alarm: Alarm, open val puzzle: Puzzle?) : Fragment() {
     var listener: PuzzleListener? = null
@@ -73,7 +74,7 @@ open class PuzzleFragment(open val alarm: Alarm, open val puzzle: Puzzle?) : Fra
 
     open fun sound(){
         var alert = Uri.parse(alarm.uri)
-        if (alert == null) {
+        if (alert == null || alarm.uri == "") {
             alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
             if (alert == null) {
                 alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
@@ -82,6 +83,7 @@ open class PuzzleFragment(open val alarm: Alarm, open val puzzle: Puzzle?) : Fra
                 }
             }
         }
+        Log.d("PuzzleFragment", "Selected uri: ${alert.toString()}")
         mediaPlayer = MediaPlayer()
         mediaPlayer.setAudioAttributes(
             AudioAttributes.Builder()

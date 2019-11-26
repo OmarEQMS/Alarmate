@@ -172,7 +172,6 @@ data class Alarm(
 //            add(Calendar.SECOND, 2)
 //            valid = true
 
-
             val nextDay = getNextDay()
             if(nextDay>-1){
                 set(Calendar.HOUR_OF_DAY, getAlarmHour())
