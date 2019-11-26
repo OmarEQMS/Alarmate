@@ -38,12 +38,26 @@ class RewritePuzzleFragment(override var alarm: Alarm, override var puzzle: Puzz
 
         txtAlarmName.setText(alarm.name)
         btnSuccess.setOnClickListener {
-            if(password == txtResult.text.toString()){
-                stopAlarm()
-                listener?.onPuzzleSuccess()
+            approveStop()
+        }
+
+        txtPassword.setOnEditorActionListener { textView, i, keyEvent ->
+            if(approveStop()){
+                true
             } else {
-                Toast.makeText(context!!, "Inténtalo de nuevo", Toast.LENGTH_LONG).show()
+                false
             }
+        }
+    }
+
+    fun approveStop(): Boolean{
+        if(password == txtResult.text.toString()){
+            stopAlarm()
+            listener?.onPuzzleSuccess()
+            return true
+        } else {
+            Toast.makeText(context!!, "Inténtalo de nuevo", Toast.LENGTH_LONG).show()
+            return false
         }
     }
 

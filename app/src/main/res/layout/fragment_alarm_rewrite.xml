@@ -50,7 +50,8 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:textColor="@color/colorPrimaryText" />
+                    android:textColor="@color/colorPrimaryText"
+                    android:imeOptions="actionDone"/>
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>

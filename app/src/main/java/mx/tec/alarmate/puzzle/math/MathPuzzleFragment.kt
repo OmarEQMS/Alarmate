@@ -33,12 +33,26 @@ class MathPuzzleFragment(override var alarm: Alarm, override var puzzle: Puzzle)
 
         txtAlarmName.setText(alarm.name)
         btnSuccess.setOnClickListener {
-            if(equation.validate(txtResult.text.toString().toInt())){
-                stopAlarm()
-                listener?.onPuzzleSuccess()
+            approveStop()
+        }
+
+        txtResult.setOnEditorActionListener { textView, i, keyEvent ->
+            if(approveStop()){
+                true
             } else {
-                Toast.makeText(context!!, "Inténtalo de nuevo", Toast.LENGTH_LONG).show()
+                false
             }
+        }
+    }
+
+    fun approveStop(): Boolean{
+        if(equation.validate(txtResult.text.toString().toInt())){
+            stopAlarm()
+            listener?.onPuzzleSuccess()
+            return true
+        } else {
+            Toast.makeText(context!!, "Inténtalo de nuevo", Toast.LENGTH_LONG).show()
+            return false
         }
     }
 
