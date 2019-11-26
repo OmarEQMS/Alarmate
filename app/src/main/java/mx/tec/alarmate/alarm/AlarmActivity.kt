@@ -8,6 +8,7 @@ import mx.tec.alarmate.R
 import mx.tec.alarmate.db.model.Alarm
 import mx.tec.alarmate.db.model.Puzzle
 import mx.tec.alarmate.db.util.AppDatabase
+import mx.tec.alarmate.puzzle.ARG_PUZZLE
 import mx.tec.alarmate.puzzle.PuzzleFragment
 import mx.tec.alarmate.puzzle.PuzzleListener
 import mx.tec.alarmate.puzzle.PuzzleType
@@ -27,6 +28,7 @@ class AlarmActivity : AppCompatActivity(), PuzzleListener {
         setContentView(R.layout.activity_alarm)
 
         val alarm = intent.getParcelableExtra<Alarm>(AlarmReceiver.ARG_ALARM)
+        val puzzle = intent.getParcelableExtra<Puzzle>(ARG_PUZZLE)
         if(alarm != null){
             this.alarm = alarm
             Log.d(AlarmActivity::class.java.simpleName, "Alarm was triggered with id: ${alarm.idAlarm}, name: ${alarm.name}")
@@ -40,6 +42,10 @@ class AlarmActivity : AppCompatActivity(), PuzzleListener {
                 triggerPuzzles()
             }.start()
 
+        }else if(puzzle != null){
+            puzzles = listOf(puzzle)
+            this.alarm = Alarm(0, "Prueba", false, "Hora", false, false, false, false, false, false, false, false, false)
+            triggerPuzzles()
         }else{
             Log.e(AlarmActivity::class.java.simpleName, "Alarm is not stored in database")
             finish()

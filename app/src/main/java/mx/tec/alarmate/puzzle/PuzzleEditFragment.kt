@@ -1,6 +1,7 @@
 package mx.tec.alarmate.puzzle
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,31 +15,47 @@ import kotlinx.android.synthetic.main.fragment_edit_math_puzzle.swtMedium as swt
 import kotlinx.android.synthetic.main.fragment_edit_math_puzzle.swtHard as swtMathHard
 import kotlinx.android.synthetic.main.fragment_edit_math_puzzle.btnSave as btnMathSave
 import kotlinx.android.synthetic.main.fragment_edit_math_puzzle.btnDelete as btnMathDelete
+import kotlinx.android.synthetic.main.fragment_edit_math_puzzle.btnTryEasy as btnMathTryEasy
+import kotlinx.android.synthetic.main.fragment_edit_math_puzzle.btnTryMedium as btnMathTryMedium
+import kotlinx.android.synthetic.main.fragment_edit_math_puzzle.btnTryHard as btnMathTryHard
 
 import kotlinx.android.synthetic.main.fragment_edit_maze_puzzle.swtEasy as swtMazeEasy
 import kotlinx.android.synthetic.main.fragment_edit_maze_puzzle.swtMedium as swtMazeMedium
 import kotlinx.android.synthetic.main.fragment_edit_maze_puzzle.swtHard as swtMazeHard
 import kotlinx.android.synthetic.main.fragment_edit_maze_puzzle.btnSave as btnMazeSave
 import kotlinx.android.synthetic.main.fragment_edit_maze_puzzle.btnDelete as btnMazeDelete
+import kotlinx.android.synthetic.main.fragment_edit_maze_puzzle.btnTryEasy as btnMazeTryEasy
+import kotlinx.android.synthetic.main.fragment_edit_maze_puzzle.btnTryMedium as btnMazeTryMedium
+import kotlinx.android.synthetic.main.fragment_edit_maze_puzzle.btnTryHard as btnMazeTryHard
 
 import kotlinx.android.synthetic.main.fragment_edit_rewrite_puzzle.swtEasy as swtRewriteEasy
 import kotlinx.android.synthetic.main.fragment_edit_rewrite_puzzle.swtMedium as swtRewriteMedium
 import kotlinx.android.synthetic.main.fragment_edit_rewrite_puzzle.swtHard as swtRewriteHard
 import kotlinx.android.synthetic.main.fragment_edit_rewrite_puzzle.btnSave as btnRewriteSave
 import kotlinx.android.synthetic.main.fragment_edit_rewrite_puzzle.btnDelete as btnRewriteDelete
+import kotlinx.android.synthetic.main.fragment_edit_rewrite_puzzle.btnTryEasy as btnRewriteTryEasy
+import kotlinx.android.synthetic.main.fragment_edit_rewrite_puzzle.btnTryMedium as btnRewriteTryMedium
+import kotlinx.android.synthetic.main.fragment_edit_rewrite_puzzle.btnTryHard as btnRewriteTryHard
 
 import kotlinx.android.synthetic.main.fragment_edit_sequence_puzzle.swtEasy as swtSequenceEasy
 import kotlinx.android.synthetic.main.fragment_edit_sequence_puzzle.swtMedium as swtSequenceMedium
 import kotlinx.android.synthetic.main.fragment_edit_sequence_puzzle.swtHard as swtSequenceHard
 import kotlinx.android.synthetic.main.fragment_edit_sequence_puzzle.btnSave as btnSequenceSave
 import kotlinx.android.synthetic.main.fragment_edit_sequence_puzzle.btnDelete as btnSequenceDelete
+import kotlinx.android.synthetic.main.fragment_edit_sequence_puzzle.btnTryEasy as btnSequenceTryEasy
+import kotlinx.android.synthetic.main.fragment_edit_sequence_puzzle.btnTryMedium as btnSequenceTryMedium
+import kotlinx.android.synthetic.main.fragment_edit_sequence_puzzle.btnTryHard as btnSequenceTryHard
 
 import kotlinx.android.synthetic.main.fragment_edit_scan_puzzle.swtEasy as swtScanEasy
 import kotlinx.android.synthetic.main.fragment_edit_scan_puzzle.swtMedium as swtScanMedium
 import kotlinx.android.synthetic.main.fragment_edit_scan_puzzle.swtHard as swtScanHard
 import kotlinx.android.synthetic.main.fragment_edit_scan_puzzle.btnSave as btnScanSave
 import kotlinx.android.synthetic.main.fragment_edit_scan_puzzle.btnDelete as btnScanDelete
+import kotlinx.android.synthetic.main.fragment_edit_scan_puzzle.btnTryEasy as btnScanTryEasy
+import kotlinx.android.synthetic.main.fragment_edit_scan_puzzle.btnTryMedium as btnScanTryMedium
+import kotlinx.android.synthetic.main.fragment_edit_scan_puzzle.btnTryHard as btnScanTryHard
 import mx.tec.alarmate.R
+import mx.tec.alarmate.alarm.AlarmActivity
 import mx.tec.alarmate.db.model.Puzzle
 
 open class PuzzleEditFragment(puzzle: Puzzle?, val idAlarm: Int, val type: PuzzleType, val isNew: Boolean?) : Fragment() {
@@ -49,6 +66,9 @@ open class PuzzleEditFragment(puzzle: Puzzle?, val idAlarm: Int, val type: Puzzl
     lateinit var swtHard: Switch
     lateinit var btnSave: Button
     lateinit var btnDelete: Button
+    lateinit var btnTryEasy: Button
+    lateinit var btnTryMedium: Button
+    lateinit var btnTryHard: Button
 
     // Initialize to default instance of Puzzle
     init {
@@ -108,6 +128,9 @@ open class PuzzleEditFragment(puzzle: Puzzle?, val idAlarm: Int, val type: Puzzl
                 swtHard = swtMathHard
                 btnSave = btnMathSave
                 btnDelete = btnMathDelete
+                btnTryEasy = btnMathTryEasy
+                btnTryMedium = btnMathTryMedium
+                btnTryHard = btnMathTryHard
             }
             PuzzleType.MAZE -> {
                 swtEasy = swtMazeEasy
@@ -115,6 +138,9 @@ open class PuzzleEditFragment(puzzle: Puzzle?, val idAlarm: Int, val type: Puzzl
                 swtHard = swtMazeHard
                 btnSave = btnMazeSave
                 btnDelete = btnMazeDelete
+                btnTryEasy = btnMazeTryEasy
+                btnTryMedium = btnMazeTryMedium
+                btnTryHard = btnMazeTryHard
             }
             PuzzleType.REWRITE -> {
                 swtEasy = swtRewriteEasy
@@ -122,6 +148,9 @@ open class PuzzleEditFragment(puzzle: Puzzle?, val idAlarm: Int, val type: Puzzl
                 swtHard = swtRewriteHard
                 btnSave = btnRewriteSave
                 btnDelete = btnRewriteDelete
+                btnTryEasy = btnRewriteTryEasy
+                btnTryMedium = btnRewriteTryMedium
+                btnTryHard = btnRewriteTryHard
             }
             PuzzleType.SEQUENCE -> {
                 swtEasy = swtSequenceEasy
@@ -129,6 +158,9 @@ open class PuzzleEditFragment(puzzle: Puzzle?, val idAlarm: Int, val type: Puzzl
                 swtHard = swtSequenceHard
                 btnSave = btnSequenceSave
                 btnDelete = btnSequenceDelete
+                btnTryEasy = btnSequenceTryEasy
+                btnTryMedium = btnSequenceTryMedium
+                btnTryHard = btnSequenceTryHard
             }
             PuzzleType.SCAN -> {
                 swtEasy = swtScanEasy
@@ -136,6 +168,9 @@ open class PuzzleEditFragment(puzzle: Puzzle?, val idAlarm: Int, val type: Puzzl
                 swtHard = swtScanHard
                 btnSave = btnScanSave
                 btnDelete = btnScanDelete
+                btnTryEasy = btnScanTryEasy
+                btnTryMedium = btnScanTryMedium
+                btnTryHard = btnScanTryHard
             }
         }
         swtEasy.setOnCheckedChangeListener { compoundButton, b ->
@@ -165,6 +200,16 @@ open class PuzzleEditFragment(puzzle: Puzzle?, val idAlarm: Int, val type: Puzzl
         btnDelete.setOnClickListener {
             listener?.onPuzzleDeleted(puzzle)
         }
+        btnTryEasy.setOnClickListener {
+            // create copy of puzzle with different defficulty
+            startPuzzle()
+        }
+        btnTryMedium.setOnClickListener {
+            startPuzzle()
+        }
+        btnTryHard.setOnClickListener {
+            startPuzzle()
+        }
         if(isNew != null && isNew){
             btnDelete.isGone = true
             swtEasy.isChecked = true
@@ -175,6 +220,12 @@ open class PuzzleEditFragment(puzzle: Puzzle?, val idAlarm: Int, val type: Puzzl
                 PuzzleDifficulty.HARD -> swtHard.isChecked = true
             }
         }
+    }
+
+    fun startPuzzle(puzzle: Puzzle){
+        val i = Intent(context, AlarmActivity::class.java)
+        i.putExtra(ARG_PUZZLE, puzzle)
+        context!!.startActivity(i)
     }
 
     override fun onDetach() {

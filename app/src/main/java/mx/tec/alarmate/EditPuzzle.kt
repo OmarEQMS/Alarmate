@@ -20,8 +20,10 @@ class EditPuzzle : AppCompatActivity(), PuzzleEditorListener, AdapterView.OnItem
     var isNew = true
     var puzzle: Puzzle? = null
     var puzzleType: PuzzleType = PuzzleType.MATH
-    var puzzleTypes = arrayOf(PuzzleType.MATH, PuzzleType.MAZE, PuzzleType.REWRITE, PuzzleType.SEQUENCE)
-    var puzzleTypeStrs = arrayOf("Ecuación matemática", "Laberinto", "Reescribir", "Secuencia")
+//    var puzzleTypes = arrayOf(PuzzleType.MATH, PuzzleType.MAZE, PuzzleType.REWRITE, PuzzleType.SEQUENCE)
+//    var puzzleTypeStrs = arrayOf("Ecuación matemática", "Laberinto", "Reescribir", "Secuencia")
+    var puzzleTypes = arrayOf(PuzzleType.MATH, PuzzleType.REWRITE, PuzzleType.SEQUENCE)
+    var puzzleTypeStrs = arrayOf("Ecuación matemática", "Reescribir", "Secuencia")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
