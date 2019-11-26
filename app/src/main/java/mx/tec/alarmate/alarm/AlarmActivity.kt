@@ -13,6 +13,7 @@ import mx.tec.alarmate.puzzle.PuzzleListener
 import mx.tec.alarmate.puzzle.PuzzleType
 import mx.tec.alarmate.puzzle.basic.BasicPuzzleFragment
 import mx.tec.alarmate.puzzle.math.MathPuzzleFragment
+import mx.tec.alarmate.puzzle.rewrite.RewritePuzzleFragment
 
 class AlarmActivity : AppCompatActivity(), PuzzleListener {
 
@@ -82,7 +83,7 @@ class AlarmActivity : AppCompatActivity(), PuzzleListener {
 //                return BasicPuzzleFragment(alarm, puzzle)
             }
             PuzzleType.REWRITE-> {
-//                return BasicPuzzleFragment(alarm, puzzle)
+                return RewritePuzzleFragment(alarm, puzzle)
             }
         }
         return BasicPuzzleFragment(alarm, puzzle)

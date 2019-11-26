@@ -12,9 +12,12 @@ import kotlinx.android.synthetic.main.fragment_alarm_math.*
 import mx.tec.alarmate.R
 import mx.tec.alarmate.db.model.Alarm
 import mx.tec.alarmate.db.model.Puzzle
+import mx.tec.alarmate.puzzle.PuzzleDifficulty
 import mx.tec.alarmate.puzzle.PuzzleFragment
 
 class MathPuzzleFragment(override var alarm: Alarm, override var puzzle: Puzzle) : PuzzleFragment(alarm, puzzle) {
+    data class DifficultyPolicy(val difficulty: PuzzleDifficulty, val validOperands: ArrayList<Operand>, val numberOfLiteralsRange: Pair<Int, Int>, val literalsRange: Pair<Int, Int>)
+
     lateinit var equation: MathEquation
 
     override fun onCreateView(
@@ -45,4 +48,24 @@ class MathPuzzleFragment(override var alarm: Alarm, override var puzzle: Puzzle)
         super.startAlarm()
     }
 
+    companion object{
+        val EASY_POLICY = MathPuzzleFragment.DifficultyPolicy(
+            PuzzleDifficulty.EASY,
+            arrayListOf(Operand.PLUS, Operand.MINUS),
+            Pair(2,2),
+            Pair(5,20)
+        )
+        val MEDIUM_POLICY = MathPuzzleFragment.DifficultyPolicy(
+            PuzzleDifficulty.MEDIUM,
+            arrayListOf(Operand.PLUS, Operand.MINUS, Operand.MULTIPLY),
+            Pair(2,3),
+            Pair(5,40)
+        )
+        val HARD_POLICY = MathPuzzleFragment.DifficultyPolicy(
+            PuzzleDifficulty.HARD,
+            arrayListOf(Operand.PLUS, Operand.MINUS, Operand.MULTIPLY, Operand.DIVIDE),
+            Pair(3, 4),
+            Pair(-20, 20)
+        )
+    }
 }

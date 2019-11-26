@@ -1,6 +1,9 @@
 package mx.tec.alarmate.puzzle.math
 
 import mx.tec.alarmate.puzzle.PuzzleDifficulty
+import mx.tec.alarmate.puzzle.math.MathPuzzleFragment.Companion.EASY_POLICY
+import mx.tec.alarmate.puzzle.math.MathPuzzleFragment.Companion.HARD_POLICY
+import mx.tec.alarmate.puzzle.math.MathPuzzleFragment.Companion.MEDIUM_POLICY
 import java.util.*
 import java.util.Arrays.asList
 import java.util.Collections.unmodifiableList
@@ -31,39 +34,16 @@ enum class Operand {
     }
 }
 
-data class DifficultyPolicy(val difficulty: PuzzleDifficulty, val validOperands: ArrayList<Operand>, val numberOfLiteralsRange: Pair<Int, Int>, val literalsRange: Pair<Int, Int>)
-
 class MathEquation(val difficulty: PuzzleDifficulty){
     var literals: ArrayList<Int>
     var operands: ArrayList<Operand>
     var result: Int
 
-    companion object{
-        val EASY_POLICY = DifficultyPolicy(
-            PuzzleDifficulty.EASY,
-            arrayListOf(Operand.PLUS, Operand.MINUS),
-            Pair(2,2),
-            Pair(5,20)
-        )
-        val MEDIUM_POLICY = DifficultyPolicy(
-            PuzzleDifficulty.MEDIUM,
-            arrayListOf(Operand.PLUS, Operand.MINUS, Operand.MULTIPLY),
-            Pair(2,3),
-            Pair(5,40)
-        )
-        val HARD_POLICY = DifficultyPolicy(
-            PuzzleDifficulty.HARD,
-            arrayListOf(Operand.PLUS, Operand.MINUS, Operand.MULTIPLY, Operand.DIVIDE),
-            Pair(3,4),
-            Pair(-20,20)
-        )
-    }
-
     init{
         literals = arrayListOf()
         operands = arrayListOf()
         val r = Random()
-        val policy: DifficultyPolicy
+        val policy: MathPuzzleFragment.DifficultyPolicy
 
         when(difficulty){
             PuzzleDifficulty.EASY -> {
